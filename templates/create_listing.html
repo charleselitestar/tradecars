@@ -1,0 +1,97 @@
+{% extends 'layout.html' %}
+
+
+{% block content %}
+
+<div class="row">
+    <div class="col create">
+        <h1 class="hd shd">Enter Veichle Details</h1>
+        <form action="/listings/create" method="post" enctype="multipart/form-data">
+        <label for="make">
+            <input type="text" name="make" id="make" placeholder="make">
+        </label>
+        <br>
+        <label for="model">
+            <input type="text" name="model" id="model" placeholder="model">
+        </label>
+        <br>
+        <label for="year">
+            <input type="number" name="year" id="year" placeholder="year">
+        </label>
+        <br>
+        <label for="price">
+            <input type="number" name="price" id="price" placeholder="price">
+        </label>
+        <br>
+        <label for="mileage">
+            <input type="number" name="mileage" id="mileage" placeholder="mileage">
+        </label>
+        <br>
+        <label for="fuel_type">
+            <input type="text" name="fuel_type" id="fuel_type" placeholder="fuel_type">
+        </label>
+        <br>
+        <label for="contact_details">
+            <input type="text" name="contact_details" id="contact_details">
+        </label>
+        <br>
+                <center><label for="profile" class="h6 ">Upload a Picture Of Yourself Here</label></center>
+            <input type="file" class="form-control t" name="image" id="profile">
+        <br>
+        <label for="Description">Description <br>
+            <textarea name="description" id="" cols="30" rows="3"></textarea>
+        </label>
+        <br>
+        <button onclick="generateCV()" class="btn btn-primary" type="submit">Submit</button>
+
+        </form>
+    </div>
+
+
+    <div class="col create1">
+
+            <!-- Generated CV -->
+    <h2 class="h1 hd">Listing Preview</h2>
+    <pre id="generatedCV"></pre>
+
+    <script>
+        function generateCV() {
+            const fullName = document.getElementById("make").value;
+            const email = document.getElementById("model").value;
+            const phone = document.getElementById("year").value;
+            const degree = document.getElementById("price").value;
+            const university = document.getElementById("mileage").value;
+            const gradYear = document.getElementById("fule_type").value;
+            const jobTitle = document.getElementById("description").value;
+
+            const cv = `
+                Full Name: ${fullName}
+                Email: ${email}
+                Phone: ${phone}
+                
+                Education:
+                - ${degree} from ${university} (${gradYear})
+                
+                Work Experience:
+                - ${jobTitle} at ${company} (${expYear} years)
+            `;
+
+            document.getElementById("generatedCV").textContent = cv;
+        }
+    </script>
+    </div>
+</div>
+
+
+
+
+
+    
+
+
+{% endblock %}
+
+
+{% for user in users %}
+<option value="{{ user.id }}">{{ user.name }}</option>
+{% endfor %}

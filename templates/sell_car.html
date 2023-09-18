@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Create Listing</title>
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+</head>
+
+<body>
+
+    <div id="maincontainer">
+        <div id="hometab">
+            <button onclick="window.location.href='{{ url_for('view_listings') }}'">View Listings</button>
+            <button onclick="window.location.href='{{ url_for('index') }}'">Exit</button>
+        </div>
+        <br>
+        <h1>Create Listing</h1>
+        <hr />
+        <center>
+            <div id="containerbox">
+
+                <div class="panel panel-default">
+                    <div class="panel-body -md">
+                        <form id="listing-form" method="POST" enctype="multipart/form-data"
+                            action="{{ url_for('create_listing') }}">
+                            <input class="form-control-sm" type="text" name="make" placeholder="Make" required>
+                            <br>
+                            <input class="form-control-sm" type="text" name="model" placeholder="Model" required>
+                            <input class="form-control-sm" type="text" name="fuel_type" placeholder="fuel type"
+                                required>
+                            <input class="form-control-sm" type="number" name="year" placeholder="Year" required>
+                            <input type="number" name="price" step="0.01" placeholder="Price" required>
+                            <input type="number" name="mileage" step="0.01" placeholder="Mileage" required>
+                            <textarea name="description" placeholder="Description" required></textarea>
+                            <input type="text" name="contact_details" placeholder="Contact Details" required>
+                            <select name="user_id">
+                                {% for user in users %}
+                                <option value="{{ user.id }}">{{ user.name }}</option>
+                                {% endfor %}
+                            </select>
+                            <input type="file" name="image">
+                            <input type="submit" value="Create Listing">
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </center>
+    </div>
+</body>
+
+</html>

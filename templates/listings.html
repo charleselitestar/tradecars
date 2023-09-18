@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+
+
+    <nav>
+  <form action="/search" method="post">
+    <input type="text" class="form-control-sm" name="search" id="search" placeholder="search">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+        <hr />
+        <ul>
+            {% for listing in listings %}
+            <li>{{ listing.make }} {{ listing.model }} - {{ listing.year }}</li>
+            {% endfor %}
+        </ul>
+        <hr>
+        <center><a href="/listings/create">Create Listing</a></p>
+    </div>
+
+
+
+{% endblock %}

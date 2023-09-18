@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+
+    <link rel="stylesheet" href="/static/bootsrap/css/bootstrap.min.css">
+    <style>
+        .r {
+            float: right;
+        }
+
+        .h1 {
+            background-color: blue;
+            color: white;
+        }
+
+        .container {
+            box-shadow: 2px 2px 2px 2px gray;
+            margin-top: 10%;
+            padding: 10px;
+            width: 50vw;
+            background-color: rgb(249, 243, 243);
+        }
+
+        .link {
+            padding: 5px 8px;
+            background-color: rgb(226, 242, 247);
+            color: black;
+            text-decoration: none;
+            border-radius: 15px;
+        }
+
+        .link:hover {
+            background-color: lightblue;
+            padding: 5px 8px;
+        }
+
+        .d {
+            margin-top: 0.4%;
+            margin-right: 5px;
+        }
+
+        .c {
+            margin-left: 5px;
+        }
+        .p{
+            color: red;
+            height: 40px;
+            margin-bottom: 5px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <center>
+            <div class="h1">Register  <a href="/" class="btn btn-danger d r">Exit</a></div>
+        </center>
+        <div class="container">
+            <form action="/register" method="POST">
+                <input type="text" class="form-control" name="first_name" id="first_name" placeholder="first name"><br>
+                <input type="email" class="form-control" name="email" placeholder="Email" required><br>
+                <input type="text" class="form-control" name="user_name" placeholder="Username" required><br>
+                <input type="password" class="form-control" name="password" placeholder="Password" required><br>
+
+                <div class="p">
+                    {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                    <div id="flash-message" class="flash">
+                        {% for message in messages %}
+                        <p>{{ message }}</p>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    {% endwith %}
+
+                </div>
+                <button class="btn btn-primary r" type="submit">Register</button>
+
+                <p><a class="link" href="/login">Alredy a user login instead</a></p>
+
+                
+            </form>
+        </div>
+    </div>
+    <script>
+        // Function to close the flash message after a specified delay
+        function closeFlashMessage() {
+            var flashMessage = document.getElementById('flash-message');
+            if (flashMessage) {
+                setTimeout(function () {
+                    flashMessage.style.display = 'none';
+                }, 5000); // Adjust the delay (in milliseconds) as needed (e.g., 5000 milliseconds = 5 seconds).
+            }
+        }
+
+        // Call the closeFlashMessage function when the page loads
+        window.onload = closeFlashMessage;
+    </script>
+
+
+</body>
+
+</html>
